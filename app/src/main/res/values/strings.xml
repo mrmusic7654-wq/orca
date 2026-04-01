@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">O.R.C.A</string>
+
+    <!-- UI Text -->
+    <string name="hint_input">Ask O.R.C.A...</string>
+    <string name="send">Send</string>
+
+    <!-- Responses -->
+    <string name="unknown_command">I don't understand yet.</string>
+    <string name="opening_youtube">Opening YouTube...</string>
+    <string name="opening_google">Opening Google...</string>
+    <string name="opening_camera">Opening Camera...</string>
+</resources>
