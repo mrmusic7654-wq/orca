@@ -1,0 +1,13 @@
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- ORCA Theme Colors -->
+    <color name="primary">#0F172A</color>
+    <color name="secondary">#1E293B</color>
+    <color name="accent">#38BDF8</color>
+
+    <!-- Chat colors -->
+    <color name="user_message">#2563EB</color>
+    <color name="bot_message">#334155</color>
+</resources>
