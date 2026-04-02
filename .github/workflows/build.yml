@@ -12,18 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
+      # 1. Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Set up JDK 17 (recommended for Gradle 9+)
+      # 2. Set up JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
 
-      # 3. Install Gradle 9.x
+      # 3. Set up Gradle 9.x
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
         with:
@@ -33,9 +33,9 @@ jobs:
       - name: Build Debug APK
         run: gradle assembleDebug --stacktrace
 
-      # 5. Upload APK artifact
+      # 5. Upload APK artifact (use v4!)
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ORCA-Debug-APK
           path: app/build/outputs/apk/debug/app-debug.apk
