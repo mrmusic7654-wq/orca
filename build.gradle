@@ -1,18 +1,26 @@
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+// Top-level build file
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+buildscript {
     repositories {
         google()
         mavenCentral()
     }
+    dependencies {
+        // Android Gradle Plugin
+        classpath 'com.android.tools.build:gradle:8.2.2'
+
+        // Kotlin Plugin (IMPORTANT FIX)
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
+    }
 }
 
-rootProject.name = "ORCA"
-include(":app")
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
