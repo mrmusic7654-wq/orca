@@ -4,17 +4,16 @@ on:
   push:
     branches:
       - main
-  pull_request:
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: Build APK
+  build-apk:
     runs-on: ubuntu-latest
 
     steps:
       # 1. Checkout code
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       # 2. Set up JDK 17
       - name: Set up JDK 17
@@ -23,19 +22,23 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      # 3. Set up Gradle 9.x
+      # 3. Set up Gradle 8.3
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          gradle-version: 9.4.1
+          gradle-version: 8.3
 
-      # 4. Build APK
-      - name: Build Debug APK
-        run: gradle assembleDebug --stacktrace
+      # 4. Grant execute permission for gradlew (just in case)
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew || true
 
-      # 5. Upload APK artifact (use v4!)
+      # 5. Clean & assemble debug APK
+      - name: Build APK
+        run: ./gradlew clean assembleDebug --stacktrace
+
+      # 6. Upload APK as artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ORCA-Debug-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: ORCA-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
